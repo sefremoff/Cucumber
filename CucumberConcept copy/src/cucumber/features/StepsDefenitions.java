@@ -1,31 +1,43 @@
 package cucumber.features;
 
-import cucumber.api.PendingException;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 public class StepsDefenitions {
+	
+	WebDriver driver = null;
 
-	@Given("^I am on my zoo website$")
-	public void shouldNavigateToZooWebsite() throws Throwable {
-		System.out.println("executed the navigate zoo method");
+	@Given("^I am on my numeproducts website$")
+	public void shouldNavigateOnNumeproductsWebsite() throws Throwable {
+		driver = new FirefoxDriver();
+		driver.navigate().to("http://numeproducts.com"); 
 	}
 
-	@When("^I click on contact link$")
-	public void shouldClickOnContactLink() throws Throwable {
-		System.out.println("executed the click on contact click method");
+	@When("^I click on sets link$")
+	public void shouldClickOnSetsLink() throws Throwable {
+		driver.findElement(By.xpath(".//*[@id='sub-sets']/a")).click();
 	}
 
-	@When("^populate contact form$")
-	public void populate_contact_form() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+	@And("^click on Octowand set$")
+	public void shouldClickOnOctowandSet() throws Throwable {
+		driver.findElement(By.xpath(".//*[@id='hair-head']/div[1]/div[7]/div[1]/ul[1]/li[1]/span[1]/a/img")).click();
 	}
 
-	@Then("^I should be on contact confirmation page$")
-	public void shouldBeOnContactConfirmationPage() throws Throwable {
-		System.out.println("checked that I am on contact confirmation page");
+	@Then("^I should be on Octowand page$")
+	public void shouldBeOnOctowandPage() throws Throwable {
+		assertTrue(equals ("Octowand"));
+
+	}
+
+	private void assertTrue(boolean equals) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
